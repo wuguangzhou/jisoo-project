@@ -1,0 +1,542 @@
+/* 全局样式 */
+:root {
+    --primary-pink: #ff69b4;
+    --dark-color: #1a1a1a;
+    --light-pink: #ffd1dc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1f2d 50%, #1a1a1a 100%);
+    color: white;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 105, 180, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background: rgba(26, 26, 26, 0.95);
+    padding: 1rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--primary-pink);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.1);
+}
+
+.logo {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+}
+
+.nav-links li a:hover {
+    color: var(--primary-pink);
+    transform: translateY(-2px);
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.4);
+}
+
+.upload-btn {
+    background: var(--primary-pink);
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem !important;
+}
+
+.upload-btn:hover {
+    background: var(--light-pink);
+    color: var(--dark-color) !important;
+}
+
+/* 上传区域样式 */
+.upload-section {
+    padding: 4rem 5%;
+    text-align: center;
+    margin-top: 60px;
+    background: linear-gradient(135deg, 
+        rgba(255, 105, 180, 0.05) 0%,
+        rgba(255, 192, 203, 0.05) 50%,
+        rgba(255, 105, 180, 0.05) 100%
+    );
+    border-radius: 20px;
+    border: 2px solid rgba(255, 105, 180, 0.1);
+}
+
+.upload-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.upload-box {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.05) 0%, rgba(255, 105, 180, 0.1) 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px dashed rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+    border-color: var(--primary-pink);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+}
+
+.upload-preview {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.upload-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.upload-preview.has-image .upload-overlay {
+    opacity: 0;
+}
+
+.upload-preview.has-image:hover .upload-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.file-info {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.file-info.show {
+    display: flex;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    color: white;
+}
+
+.file-size {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.upload-progress {
+    position: relative;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    display: none;
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary-pink);
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.error-message {
+    color: #ff4444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* 拖放状态样式 */
+.upload-box.drag-over {
+    border-color: var(--primary-pink);
+    background: rgba(255, 105, 180, 0.15);
+}
+
+/* 照片网格样式 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+.photo-item {
+    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 105, 180, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(255, 105, 180, 0.1);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.1);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: linear-gradient(45deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 31, 45, 0.8) 100%);
+    padding: 10px;
+}
+
+.photo-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.photo-item:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.delete-btn {
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 轮播图样式 */
+.slider {
+    margin-top: 60px;
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(255, 105, 180, 0.05) 0%,
+        rgba(26, 26, 26, 0.7) 50%,
+        rgba(255, 105, 180, 0.05) 100%
+    );
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.1);
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.2));
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 105, 180, 0.2);
+    color: white;
+    padding: 1.5rem;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.prev:hover, .next:hover {
+    background: rgba(255, 105, 180, 0.4);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* 加载更多按钮 */
+.load-more {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background: var(--primary-pink);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.load-more:hover {
+    background: linear-gradient(45deg, var(--primary-pink), #ff1493);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+/* 底部样式 */
+footer {
+    background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 1) 100%);
+    padding: 3rem 5% 1rem;
+    border-top: 2px solid var(--primary-pink);
+    backdrop-filter: blur(10px);
+    margin-top: 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: var(--primary-pink);
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--light-pink);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 105, 180, 0.1);
+}
+
+/* 视频预览样式 */
+.upload-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    transition: all 0.3s ease;
+}
+
+/* 视频上传框特殊样式 */
+.upload-box:nth-child(2) {
+    border-color: rgba(100, 149, 237, 0.3);
+}
+
+.upload-box:nth-child(2):hover {
+    border-color: cornflowerblue;
+    box-shadow: 0 5px 15px rgba(100, 149, 237, 0.2);
+}
+
+.upload-box:nth-child(2) .upload-button {
+    background: cornflowerblue;
+}
+
+.upload-box:nth-child(2) .upload-button:hover {
+    background: #4169e1;
+}
+
+.upload-box:nth-child(2) .progress-bar {
+    background: cornflowerblue;
+}
+
+.error-container {
+    text-align: center;
+    padding: 100px 20px;
+    margin-top: 60px;
+}
+
+.error-container h1 {
+    font-size: 6rem;
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+}
+
+.back-home {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--primary-pink);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background: var(--light-pink);
+    transform: translateY(-2px);
+}
+
+/* Emoji 鼠标跟随效果 */
+#cursor-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.cursor-trail {
+    position: fixed;
+    font-size: 1rem;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    transition: all 0.8s ease;
+    pointer-events: none;
+}
+
+#cursor-emoji {
+    position: fixed;
+    font-size: 1rem;
+    opacity: 0.9;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    z-index: 10001;
+    pointer-events: none;
+}
+
+@keyframes floatEmoji {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(10deg); }
+    75% { transform: translate(-50%, -50%) rotate(-10deg); }
+}
+
+h2 {
+    color: var(--primary-pink);
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+    font-family: 'Pacifico', cursive;
+}
+
+/* 按钮悬停效果增强 */
+.upload-button:hover, .load-more:hover {
+    background: linear-gradient(45deg, var(--primary-pink), #ff1493);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+</rewritten_file>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明星照片墙</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cursor-container">
+        <div class="cursor-trail"></div>
+        <div class="cursor-trail"></div>
+        <div class="cursor-trail"></div>
+        <div class="cursor-trail"></div>
+        <div id="cursor-emoji">💖</div>
+    </div>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">Kim jisoo's house</div>
+        <ul class="nav-links">
+            <li><a href="/">首页</a></li>
+            <li><a href="/photos.html">照片墙</a></li>
+            <li><a href="/videos.html">视频集</a></li>
+            <li><a href="#upload" class="upload-btn">上传作品</a></li>
+        </ul>
+    </nav>
+
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slides">
+            <div class="slide"><img src="http://book.lovejisoo.cn:8080/upload/thumbnails/2024/w1200/jisoo-1.jpg" alt="明星照片1"></div>
+            <div class="slide"><img src="http://book.lovejisoo.cn:8080/upload/thumbnails/2024/w1200/IMG20240523195512.jpg" alt="明星照片2"></div>
+            <div class="slide"><img src="http://book.lovejisoo.cn:8080/upload/thumbnails/2024/w1200/img-1717422493247c8b7012803d798af7ac11d621e8b3cded7742f8e61f45d8d86fed31d57e048c9.jpg" alt="明星照片3"></div>
+        </div>
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
+    </div>
+
+    <!-- 上传区域 -->
+    <div class="upload-section" id="upload">
+        <h2>上传作品</h2>
+        <div class="upload-container">
+            <!-- 照片上传 -->
+            <div class="upload-box">
+                <form id="photoForm" enctype="multipart/form-data">
+                    <div class="upload-preview" id="uploadPreviewArea">
+                        <img id="photoPreview" src="images/photo-placeholder.png" alt="预览">
+                        <div class="upload-overlay" id="uploadOverlay">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>点击或拖拽照片到这里</p>
+                            <span class="file-types">支持 JPG、PNG 格式</span>
+                        </div>
+                    </div>
+                    <input type="file" name="photo" accept="image/jpeg,image/png" id="photoInput" required>
+                    <div class="upload-controls">
+                        <div class="file-info" id="fileInfo">
+                            <span class="file-name"></span>
+                            <span class="file-size"></span>
+                        </div>
+                        <button type="submit" class="upload-button">
+                            <i class="fas fa-upload"></i>
+                            上传照片
+                        </button>
+                        <div class="upload-progress">
+                            <div class="progress-bar"></div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <div id="photoError" class="error-message"></div>
+                </form>
+            </div>
+
+            <!-- 视频上传 -->
+            <div class="upload-box">
+                <form id="videoForm" enctype="multipart/form-data">
+                    <div class="upload-preview" id="videoPreviewArea">
+                        <video id="videoPreview" controls>
+                            <source src="" type="video/mp4">
+                            您的浏览器不支持视频播放
+                        </video>
+                        <div class="upload-overlay" id="videoOverlay">
+                            <i class="fas fa-film"></i>
+                            <p>点击或拖拽视频到这里</p>
+                            <span class="file-types">支持 MP4、WebM 格式</span>
+                        </div>
+                    </div>
+                    <input type="file" name="video" accept="video/mp4,video/webm" id="videoInput" required>
+                    <div class="upload-controls">
+                        <div class="file-info" id="videoFileInfo">
+                            <span class="file-name"></span>
+                            <span class="file-size"></span>
+                        </div>
+                        <button type="submit" class="upload-button">
+                            <i class="fas fa-upload"></i>
+                            上传视频
+                        </button>
+                        <div class="upload-progress">
+                            <div class="progress-bar"></div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <div id="videoError" class="error-message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 照片展示区 -->
+    <section class="gallery" id="photos">
+        <h2>精选照片</h2>
+        <div class="photo-grid">
+            <!-- 照片将通过JavaScript动态加载 -->
+        </div>
+        <button class="load-more">加载更多</button>
+    </section>
+
+    <!-- 视频展示区 -->
+    <section class="video-section" id="videos">
+        <h2>精选视频</h2>
+        <div class="video-grid">
+            <!-- 视频将通过JavaScript动态加载 -->
+        </div>
+        <button class="load-more">加载更多</button>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <p>邮箱：2814529243@qq.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Star Gallery. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

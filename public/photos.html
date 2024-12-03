@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片墙 - Star Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="photos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">Star Gallery</div>
+        <ul class="nav-links">
+            <li><a href="/">首页</a></li>
+            <li><a href="/photos.html" class="active">照片墙</a></li>
+            <li><a href="/videos.html">视频集</a></li>
+            <li><a href="/#upload" class="upload-btn">上传作品</a></li>
+        </ul>
+    </nav>
+
+    <!-- 照片墙筛选器 -->
+    <div class="filter-section">
+        <div class="search-box">
+            <input type="text" placeholder="搜索照片...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="recent">最新</button>
+            <button class="filter-btn" data-filter="popular">最热</button>
+        </div>
+    </div>
+
+    <!-- 照片墙 -->
+    <div class="photo-wall">
+        <div class="masonry-grid" id="photoGrid">
+            <!-- 照片将通过 JavaScript 动态加载 -->
+        </div>
+        <button class="load-more" id="loadMoreBtn">加载更多</button>
+    </div>
+
+    <!-- 照片预览模态框 -->
+    <div class="photo-modal" id="photoModal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div class="modal-nav">
+            <button class="modal-prev">❮</button>
+            <button class="modal-next">❯</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <p>邮箱：contact@stargallery.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Star Gallery. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="photos.js"></script>
+</body>
+</html> 
